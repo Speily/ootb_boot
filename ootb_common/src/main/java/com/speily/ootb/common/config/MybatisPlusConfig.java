@@ -1,4 +1,4 @@
-package com.speily.ootb.dao.config;
+package com.speily.ootb.common.config;
 
 import com.alibaba.druid.pool.DruidDataSource;
 import com.baomidou.mybatisplus.extension.plugins.PaginationInterceptor;
@@ -7,15 +7,15 @@ import org.mybatis.spring.annotation.MapperScan;
 import org.springframework.boot.context.properties.ConfigurationProperties;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.context.annotation.Profile;
 import org.springframework.jdbc.datasource.DataSourceTransactionManager;
 
 import javax.sql.DataSource;
 
-
 /**
  * @Auther: SPL
- * @Date: 2019-03-21 15:27
- * @Description:
+ * @Date: 2019-03-22 10:09
+ * @Description: MybatisPlus配置（全局使用）
  */
 @Configuration
 @MapperScan("com.speily.ootb.dao.mapper*")
@@ -25,6 +25,7 @@ public class MybatisPlusConfig {
      * @return
      */
     @Bean
+    @Profile({"dev"})// 设置 dev 环境开启
     public PerformanceInterceptor performanceInterceptor() {
         PerformanceInterceptor performanceInterceptor = new PerformanceInterceptor();
         /*<!-- SQL 执行性能分析，开发环境使用，线上不推荐。 maxTime 指的是 sql 最大执行时长 -->*/
